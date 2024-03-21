@@ -4,15 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "npx dotenv sequelize-cli db:migrate",
-    "migrate-undo": "npx dotenv sequelize-cli db:migrate:undo",
-    "seed": "npx dotenv sequelize-cli db:seed:all",
-    "seed-undo": "npx dotenv sequelize-cli db:seed:undo",
     "sequelize": "sequelize",
     "sequelize-cli": "sequelize-cli",
     "start": "per-env",
-    "start:development": "nodemon ./bin/www",
+    "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
   },
   "keywords": [],
