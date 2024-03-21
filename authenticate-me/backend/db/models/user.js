@@ -3,7 +3,7 @@
 const bcrypt = require('bcryptjs');
 
 const {
-  Model
+  Model, Validator
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [4, 30],
         isNotEmail(value) {
-          if (validator.isEmail(value)) {
+          if (Validator.isEmail(value)) {
             throw new Error('Cannot be an email')
           }
         }
@@ -87,12 +87,13 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
 
     defaultScope: {
-      exclude: ['hashedPassword', 'updatedAt', 'email', 'createdAt']
+      attributes: {
+        exclude: ['hashedPassword', 'updatedAt', 'email', 'createdAt']
+      }
     },
     scopes: {
       currentUser: {
-        exclude: ['hashedPassword'],
-        // attributes: { exclude: ['hashedPassword', 'updatedAt', 'createdAt'] }
+        attributes: { exclude: ['hashedPassword', 'updatedAt', 'createdAt'] }
       },
       loginUser: {
         attributes: {}
