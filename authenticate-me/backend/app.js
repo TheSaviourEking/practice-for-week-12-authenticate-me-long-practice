@@ -39,6 +39,9 @@ app.use(
 );
 
 app.use(routes);
+app.get('/', (req, res) => {
+    res.json({ message: 'API service running' })
+});
 
 // error handlers
 // Resource Not Found Error-Handler
