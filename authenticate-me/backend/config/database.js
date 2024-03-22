@@ -10,7 +10,11 @@ module.exports = {
         benchmark: true,
     },
     production: {
-        use_env_variable: 'DATABASE_URL',
+        // use_env_variable: 'DATABASE_URL',
+        username: process.env.PG_USER,
+        database: process.env.PG_USER,
+        host: process.env.PG_HOST,
+        password: String(process.env.PG_PASSWORD),
         dialect: 'postgres',
         seederStorage: 'sequelize',
         dialectIptions: {
